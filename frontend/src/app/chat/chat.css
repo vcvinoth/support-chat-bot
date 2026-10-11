@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+  min-height: 0;
+}
+
+.messages {
+  flex: 1;
+  min-height: 0;
+}

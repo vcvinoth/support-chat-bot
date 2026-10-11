@@ -1,0 +1,4 @@
+<div class="chat">
+  <app-chat-message-list class="messages" [messages]="messages()" [waiting]="waiting()" />
+  <app-chat-input [disabled]="waiting()" (send)="send($event)" />
+</div>

@@ -1,0 +1,24 @@
+@if (documents().length === 0) {
+  <p class="empty">No documents yet. Upload a PDF to get started.</p>
+} @else {
+  <ul class="list">
+    @for (doc of documents(); track doc.id) {
+      <li class="item">
+        <div class="row">
+          <span class="name" [title]="doc.fileName">{{ doc.fileName }}</span>
+          <span class="badge" [class.failed]="doc.status === 'FAILED'">
+            {{ doc.status === 'INDEXED' ? 'Indexed' : 'Failed' }}
+          </span>
+        </div>
+        <div class="meta">
+          @if (doc.status === 'INDEXED') {
+            {{ doc.pages }} pages · {{ doc.chunks }} chunks ·
+          } @else if (doc.error) {
+            {{ doc.error }} ·
+          }
+          {{ doc.uploadedAt | date: 'short' }}
+        </div>
+      </li>
+    }
+  </ul>
+}

@@ -1,0 +1,19 @@
+<header class="header">
+  <h1>{{ title() }}</h1>
+</header>
+
+<main class="layout">
+  <section class="panel documents" aria-labelledby="documents-heading">
+    <h2 id="documents-heading">Documents</h2>
+    <app-document-upload (uploadFinished)="loadDocuments()" />
+    @if (loadError(); as error) {
+      <p class="error" role="alert">{{ error }}</p>
+    }
+    <app-document-list [documents]="documents()" />
+  </section>
+
+  <section class="panel chat" aria-labelledby="chat-heading">
+    <h2 id="chat-heading">Chat</h2>
+    <app-chat class="chat-body" />
+  </section>
+</main>

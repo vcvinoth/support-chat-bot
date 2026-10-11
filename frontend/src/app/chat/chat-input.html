@@ -1,0 +1,14 @@
+<form class="input" (submit)="$event.preventDefault(); submit()">
+  <label for="question" class="visually-hidden">Your question</label>
+  <textarea
+    #box
+    id="question"
+    rows="2"
+    placeholder="Ask a question… (Enter to send, Shift+Enter for a new line)"
+    [maxLength]="maxLength"
+    [value]="text()"
+    (input)="text.set($any($event.target).value)"
+    (keydown)="onKeydown($event)"
+  ></textarea>
+  <button type="submit" [disabled]="!canSend()">Send</button>
+</form>

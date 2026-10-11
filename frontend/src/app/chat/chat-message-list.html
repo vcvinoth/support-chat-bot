@@ -1,0 +1,20 @@
+<div class="log" role="log" aria-live="polite" aria-label="Conversation">
+  @for (message of messages(); track message.id) {
+    <div class="message" [class]="message.role">
+      <p class="text" [attr.role]="message.role === 'error' ? 'alert' : null">{{ message.text }}</p>
+      @if (message.sources.length > 0) {
+        <ul class="sources" aria-label="Sources">
+          @for (source of message.sources; track $index) {
+            <li>{{ source.fileName }}, page {{ source.page }}</li>
+          }
+        </ul>
+      }
+    </div>
+  } @empty {
+    <p class="empty">Ask a question about your uploaded documents.</p>
+  }
+
+  @if (waiting()) {
+    <div class="message assistant pending" role="status">Thinking…</div>
+  }
+</div>

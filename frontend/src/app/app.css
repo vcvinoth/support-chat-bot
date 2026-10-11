@@ -1,0 +1,72 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+.header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.layout {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 0;
+}
+
+.documents {
+  overflow-y: auto;
+}
+
+.panel h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.chat-body {
+  flex: 1;
+  min-height: 0;
+}
+
+.error {
+  margin: 0;
+  color: var(--danger);
+}
+
+/* Narrow screens: stack documents above chat and let the page scroll. */
+@media (max-width: 760px) {
+  :host {
+    height: auto;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  /* Fixed height so messages scroll inside the chat and the input stays visible. */
+  .chat-body {
+    flex: none;
+    height: 75dvh;
+    min-height: 320px;
+  }
+}

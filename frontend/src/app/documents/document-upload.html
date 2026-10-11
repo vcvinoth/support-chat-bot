@@ -1,0 +1,22 @@
+<div class="upload">
+  <label class="button" [class.disabled]="uploading()">
+    Upload PDF
+    <input
+      #fileInput
+      type="file"
+      aria-label="Upload PDF files"
+      accept="application/pdf,.pdf"
+      multiple
+      [disabled]="!!uploading()"
+      (change)="onFilesSelected(fileInput)"
+    />
+  </label>
+
+  @if (uploading(); as fileName) {
+    <p class="status" role="status">Uploading and indexing {{ fileName }}…</p>
+  }
+
+  @for (error of errors(); track $index) {
+    <p class="error" role="alert">{{ error }}</p>
+  }
+</div>
